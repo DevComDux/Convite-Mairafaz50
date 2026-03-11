@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Flashback • 50 anos Máira • Convite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0c0f;
+            color: #f0f0ff;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* fundo animado */
+        .neon-title{
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow{
+            from{ text-shadow:0 0 10px cyan; }
+            to{ text-shadow:0 0 30px magenta,0 0 50px cyan; }
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 30%40%, #ff00c1 0%, transparent 25%),
+                radial-gradient(circle at 70%60%, #00ffff 0%, transparent 30%),
+                radial-gradient(circle at 10%80%, #ffff00 0%, transparent 20%), #0a0c0f;
+            background-size: 200%200%, 200%200%, 200%200%;
+            animation: bgMove 25s ease-in-out infinite alternate;
+            opacity: 0.6;
+        }
+
+        @keyframes bgMove {
+            0% {
+                background-position: 0%0%, 100%100%, 20%50%;
+            }
+
+            33% {
+                background-position: 50%30%, 30%70%, 80%20%;
+            }
+
+            66% {
+                background-position: 80%70%, 60%20%, 30%80%;
+            }
+
+            100% {
+                background-position: 40%60%, 20%80%, 50%20%;
+            }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: linear-gradient(rgba(255, 0, 255, 0.1)1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1)1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0, 0 0;
+            }
+
+            100% {
+                background-position: 50px 50px, 50px 50px;
+            }
+        }
+
+        .vhs-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15)0px, rgba(255, 255, 255, 0.02)2px, transparent 3px, transparent 6px);
+            animation: vhsFlicker 0.2s infinite;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        @keyframes vhsFlicker {
+            0% {
+                opacity: 0.3;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 0.35;
+                transform: translateY(1px);
+            }
+
+            100% {
+                opacity: 0.3;
+                transform: translateY(0);
+            }
+        }
+
+        /* splash */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 9999;
+            background: radial-gradient(circle at center, #120458 0%, #000 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: splashFade 5s ease-in-out forwards;
+            pointer-events: none;
+        }
+
+        .splash-content {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            color: #ff00c1;
+            text-shadow: 0 0 10px #ff00c1, 0 0 20px #ff00c1, 0 0 40px #00f7ff;
+            animation: flicker 2s infinite alternate;
+            padding: 15px;
+            max-width: 100%;
+        }
+
+        .splash-content h1 {
+            font-size: clamp(1rem, 5vw, 4rem);
+            letter-spacing: clamp(0.2rem, 2vw, 0.5rem);
+            border: 4px solid cyan;
+            padding: clamp(15px, 5vw, 25px) clamp(15px, 5vw, 30px);
+            box-shadow: 0 0 40px cyan, 0 0 80px magenta;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            margin-bottom: clamp(15px, 5vh, 30px);
+            word-break: break-word;
+        }
+
+        .splash-message {
+            font-size: clamp(1rem, 5vw, 1.8rem);
+            color: #fff;
+            text-shadow: 0 0 15px magenta;
+            margin: clamp(10px, 3vh, 20px) 0;
+            letter-spacing: clamp(1px, 1vw, 2px);
+        }
+
+        .countdown-splash {
+            font-size: clamp(3rem, 20vw, 5rem);
+            font-weight: 900;
+            color: #ff0;
+            text-shadow: 0 0 30px #f0f, 0 0 60px cyan;
+            animation: pulse 1s infinite;
+            margin-top: clamp(10px, 3vh, 20px);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.9;
+                text-shadow: 0 0 50px #ff0, 0 0 100px fuchsia;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes splashFade {
+            0% {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        @keyframes flicker {
+            0% {
+                text-shadow: 0 0 10px #ff00c1, 0 0 20px cyan;
+            }
+
+            100% {
+                text-shadow: 0 0 30px #ffaa00, 0 0 60px magenta, 0 0 80px #ff0;
+            }
+        }
+
+        .main-content {
+            opacity: 0;
+            animation: appearAfter 5.2s forwards;
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            padding-bottom: 80px;
+        }
+
+        @keyframes appearAfter {
+            0% {
+                opacity: 0;
+            }
+
+            99% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 40px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .retro-card {
+            background: rgba(8, 5, 20, 0.75);
+            backdrop-filter: blur(12px);
+            border: 3px solid rgba(255, 0, 255, 0.6);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.4), inset 0 0 30px rgba(255, 0, 200, 0.3);
+            border-radius: 50px 15px 50px 15px;
+            padding: clamp(25px, 6vw, 40px) clamp(15px, 4vw, 25px);
+            width: min(950px, 100%);
+            margin: 15px auto;
+        }
+
+        /* ---- SEÇÃO 1 (igual à imagem) ---- */
+        .secao1-conteudo {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+        }
+
+        .secao1-conteudo .destaque1 {
+            font-size: clamp(1rem, 6vw, 3rem);
+            font-weight: 600;
+            color: #ffff00;
+            text-shadow: 0 0 15px magenta, 0 0 30px cyan;
+            margin-bottom: 5px;
+        }
+
+        .secao1-conteudo .destaque2 {
+            font-size: clamp(1rem, 5vw, 2.5rem);
+            color: #fff;
+            text-shadow: 0 0 10px cyan;
+            margin: 5px 0;
+        }
+
+        .secao1-conteudo .flashback {
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-weight: 900;
+            color: #ffff00;
+            text-shadow: 0 0 20px magenta, 0 0 40px cyan, 0 0 80px #fff;
+            margin: 10px 0;
+            letter-spacing: 4px;
+        }
+
+        .secao1-conteudo .flash{
+            color: #ff66ff;
+            text-shadow: 0 0 15px magenta, 0 0 30px cyan;
+        }
+
+        .secao1-conteudo .back{
+            color: cyan;
+            text-shadow: 0 0 15px magenta, 0 0 30px cyan;
+        }
+
+        .secao1-conteudo .maira50 {
+            font-size: clamp(1.5rem, 3vw, 3.5rem);
+            font-weight: 700;
+            color: #ffb300;
+            text-shadow: 0 0 15px blue, 0 0 30px cyan;
+            margin: 5px 0;
+        }
+
+        .secao1-conteudo .revivendo {
+            font-size: clamp(1rem, 3vw, 2.2rem);
+            color: #aaffff;
+            text-shadow: 0 0 10px fuchsia;
+            margin: 5px 0;
+        }
+
+        .secao1-conteudo .anos {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: #ffffaa;
+            margin: 5px 0;
+        }
+
+        .secao1-conteudo .data {
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            font-weight: 900;
+            color: #ffff00;
+            text-shadow: 0 0 20px magenta, 0 0 40px cyan;
+            margin: 15px 0 5px;
+            border-top: 2px dashed cyan;
+            padding: 10px 0 0;
+        }
+
+        .secao1-conteudo .sabado {
+            font-size: clamp(1.3rem, 4.5vw, 2rem);
+            color: #ffffff;
+            text-shadow: 0 0 15px cyan;
+            padding: 0 0 10px;
+            border-bottom: 2px dashed magenta;
+        }
+
+        /* botões de navegação (ícones com nome) */
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(10px, 2vw, 20px);
+            margin: 30px 0 20px;
+        }
+
+        .nav-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #0ff;
+            border-radius: 30px 8px 30px 8px;
+            padding: 10px 15px;
+            width: 100px;
+            height: 80px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 0 15px cyan;
+            text-decoration: none;
+            color: #0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 11px;
+            backdrop-filter: blur(5px);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn i {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            margin-bottom: 5px;
+            text-shadow: 0 0 5px rgb(42, 38, 38);
+        }
+
+        .nav-buttons .nav-btn:nth-child(1) i{
+            color:#ff9900;
+        }
+
+        .nav-buttons .nav-btn:nth-child(2) i{
+            color:#00ffff;
+        }
+
+        .nav-buttons .nav-btn:nth-child(3) i{
+            color:#ff00aa;
+        }
+
+        .nav-buttons .nav-btn:nth-child(4) i{
+            color:#ff0000;
+        }
+
+        .nav-buttons .nav-btn:nth-child(5) i{
+            color:#0026ff;
+        }
+
+        .nav-buttons .nav-btn:nth-child(6) i{
+            color:#17a900;
+        }
+
+        .nav-btn:hover {
+            background: #ff00c1;
+            color: #000;
+            border-color: #ff00c1;
+            box-shadow: 0 0 30px #ff00c1;
+        }
+
+        .nav-btn:hover i {
+            color: #fff;
+        }
+
+        .nav-btn:active{
+            transform: scale(0.95);
+        }
+
+        .nav-btn:link,
+        .nav-btn:visited{
+            color:#0ff;
+            background: rgba(0,0,0,0.5);
+            border-color:#0ff;
+        }
+
+        /* frase final da seção 1 */
+        .frase-final-secao1 {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: #ffffff;
+            text-shadow: 0 0 15px cyan;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* ---- SEÇÃO 2 TÚNEL DO TEMPO (igual antes) ---- */
+        .tunnel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .photo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: min(130px, 40vw);
+        }
+
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 7/9;
+            border: 4px solid #f0f;
+            box-shadow: 0 0 40px #0ff, inset 0 0 30px #ff0;
+            border-radius: 30px 5px 30px 5px;
+            background: linear-gradient(145deg, #2a0f3a, #0a142f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .photo-frame:active {
+            transform: scale(0.95);
+        }
+
+        .photo-frame.click-animate {
+            animation: photoClick 0.4s ease-out;
+        }
+
+        @keyframes photoClick {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 40px #0ff, inset 0 0 30px #ff0;
+            }
+
+            25% {
+                transform: scale(1.1);
+                box-shadow: 0 0 70px #ff0, 0 0 100px fuchsia;
+                border-color: #fff;
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 60px lime, 0 0 90px cyan;
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 40px #0ff, inset 0 0 30px #ff0;
+            }
+        }
+
+        .photo-emoji {
+            font-size: clamp(2rem, 7vw, 4rem);
+            filter: drop-shadow(0 0 15px cyan);
+        }
+
+        .photo-caption-outside {
+            font-size: clamp(0.7rem, 2.8vw, 1rem);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #ffffaa;
+            text-shadow: 0 0 8px magenta;
+            border: 2px solid cyan;
+            margin-top: 8px;
+            box-shadow: 0 0 15px fuchsia;
+        }
+
+        /* ---- SEÇÃO 3 CARDÁPIO ---- */
+        .cardapio-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+        }
+
+        .cardapio-lista div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px dashed cyan;
+            padding: 10px;
+        }
+
+        .cardapio-lista img {
+            border-radius: 10px;
+        }
+
+        /* ---- SEÇÃO 4 LISTA DE PRESENTES ---- */
+        .presentes-lista {
+            font-size: clamp(1.3rem, 4.5vw, 2rem);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            list-style: none;
+            width: 100%;
+        }
+
+        .presentes-lista li {
+            margin: 15px 0;
+            background: rgba(255, 0, 200, 0.15);
+            padding: 15px;
+            border-radius: 50px 8px;
+            border-left: 6px solid #0ff;
+            font-size: clamp(1rem, 3.5vw, 1.5rem);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* ---- SEÇÃO 5 LOCALIZAÇÃO (NOVA) ---- */
+        .local-info {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .local-info i {
+            color: #0ff;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+        }
+
+        /* ---- SEÇÃO 6 INFORMAÇÕES (inclui traje a caráter) ---- */
+        .info-lista {
+            list-style: none;
+            width: 100%;
+        }
+
+        .info-lista li {
+            margin: 15px 0;
+            background: rgba(255, 0, 200, 0.15);
+            padding: 15px;
+            border-radius: 50px 8px;
+            border-left: 6px solid #0ff;
+            font-size: clamp(1rem, 3.5vw, 1.5rem);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* ---- SEÇÃO 7 CONFIRMAÇÃO (sem botão cardápio) ---- */
+        .secao7-conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .secao7-conteudo .data-limite {
+            font-size: clamp(1rem, 3.5vw, 1.5rem);
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        .secao7-conteudo .data-destaque-suave {
+            font-size: clamp(1.8rem, 6vw, 2.8rem);
+            font-weight: 700;
+            color: #ffffaa;
+            text-shadow: 0 0 15px magenta, 0 0 30px cyan;
+            margin: 5px 0 20px;
+            padding: 8px 18px;
+            border: 2px solid rgba(255, 0, 255, 0.4);
+            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            display: inline-block;
+        }
+
+        .vagas-limitadas {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            color: #ff99ff;
+            text-shadow: 0 0 10px magenta, 0 0 20px cyan;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 2px solid cyan;
+            border-radius: 50px;
+            animation: piscaSuave 2s infinite;
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes piscaSuave {
+            0% {
+                opacity: 0.8;
+                border-color: cyan;
+            }
+
+            50% {
+                opacity: 1;
+                border-color: magenta;
+                text-shadow: 0 0 15px fuchsia, 0 0 30px cyan;
+            }
+
+            100% {
+                opacity: 0.8;
+                border-color: cyan;
+            }
+        }
+
+        .countdown-box {
+            background: rgba(0, 255, 255, 0.15);
+            border: 2px solid cyan;
+            border-radius: 30px;
+            padding: clamp(12px, 4vw, 15px) clamp(15px, 5vw, 20px);
+            margin: 15px 0;
+            box-shadow: 0 0 30px magenta;
+            max-width: 90%;
+        }
+
+        .countdown-label {
+            padding-bottom: 8px;
+        }
+
+        .countdown-timer {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.2rem, 5vw, 2.5rem);
+            font-weight: 900;
+            color: #ffff00;
+            text-shadow: 0 0 10px red, 0 0 20px blue;
+            letter-spacing: clamp(2px, 1vw, 3px);
+        }
+
+        .neon-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: 3px solid #0ff;
+            color: #0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 3.5vw, 1.4rem);
+            padding: clamp(10px, 3vw, 12px) clamp(15px, 4vw, 20px);
+            margin: 8px;
+            border-radius: 50px 8px 50px 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px cyan;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 140px;
+            backdrop-filter: blur(5px);
+        }
+
+        .neon-btn:hover {
+            background: #ff00c1;
+            color: #000;
+            border-color: #ff00c1;
+            box-shadow: 0 0 40px magenta, 0 0 60px #ff0;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: cyan;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(0.8rem, 3vw, 1.2rem);
+            border-top: 2px solid magenta;
+            text-shadow: 0 0 10px fuchsia;
+            width: 100%;
+        }
+
+        /* player música */
+        .music-player {
+            position: fixed;
+            bottom: 80px;
+            right: 10px;
+            z-index: 999;
+            background: rgba(10, 0, 20, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 6px 12px;
+            border-radius: 50px;
+            border: 2px solid #ff00c1;
+            color: #fff;
+            font-size: 11px;
+            box-shadow: 0 0 20px cyan;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .music-btn {
+            background: none;
+            border: 2px solid #0ff;
+            color: #0ff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 0 12px magenta;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-btn:hover {
+            background: #ff00c1;
+            color: #000;
+            border-color: #ff0;
+        }
+
+        .music-btn.playing {
+            background: #00ffaa;
+            color: #000;
+            border-color: cyan;
+        }
+
+        @media (max-width:480px) {
+            .section {
+                padding: 30px 10px;
+            }
+
+            .retro-card {
+                padding: 20px 12px;
+            }
+
+            .nav-buttons {
+                gap: 8px;
+            }
+
+            .nav-btn {
+                min-width: 65px;
+                padding: 8px 10px;
+            }
+
+            .music-player {
+                bottom: 70px;
+                right: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="animated-bg"></div>
+    <div class="grid-overlay"></div>
+    <div class="vhs-overlay"></div>
+    <div class="splash-screen" id="splash">
+        <div class="splash-content">
+            <h1>FLASHBACK</h1>
+            <div class="splash-message">Prepare-se...</div>
+            <div class="countdown-splash" id="splashCounter">3</div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- SEÇÃO 1 (layout da imagem) -->
+        <section class="section" id="inicio">
+            <div class="retro-card">
+                <div class="secao1-conteudo">
+                    <div class="destaque1">VOCÊ ESTÁ CONVIDADO</div>
+                    <div class="destaque2">PARA UMA FESTA INESQUECÍVEL</div>
+                    <!-- <div class="destaque2">INESQUECÍVEL</div> -->
+                    <div class="flashback"><span class="flash">FLASH</span><span class="back">BACK</span></div>
+                    <div class="maira50">MAIRA FAZ 50 ANOS</div>
+                    <div class="revivendo">REVIVENDO AS MELHORES DOS ANOS 70, 80, 90</div>
+                    <!-- <div class="anos">DOS ANOS 70,80,90</div> -->
+                    <div class="data">25/04/2026</div>
+                    <div class="sabado">SÁBADO ÁS 21H</div>
+                </div>
+
+                <!-- Botões de navegação (ícones + nome) que levam às seções -->
+                <div class="nav-buttons">
+                    <a href="#tunel" class="nav-btn"><i class="fas fa-image"></i><span>TÚNEL DO TEMPO</span></a>
+                    <a href="#cardapio" class="nav-btn"><i class="fas fa-utensils"></i><span>CARDÁPIO</span></a>
+                    <a href="#presentes" class="nav-btn"><i class="fas fa-gift"></i><span>PRESENTES</span></a>
+                    <a href="https://www.google.com/maps/place/Instituto+São+José/@-15.6544346,-47.7987415,17z/data=!4m6!3m5!1s0x935a3f7900aae351:0xaf174743a5a2d04!8m2!3d-15.6544838!4d-47.7972221!16s%2Fg%2F1ptx77grn?authuser=0&entry=ttu&g_ep=EgoyMDI2MDMwOC4wIKXMDSoASAFQAw%3D%3D" class="nav-btn" target="_blank"><i class="fas fa-map-marker-alt"></i><span>LOCALIZAÇÃO</span></a>
+                    <a href="#info" class="nav-btn"><i class="fas fa-info-circle"></i><span>INFORMAÇÕES</span></a>
+                    <a href="#confirmacao" class="nav-btn"><i
+                            class="fas fa-check-circle"></i><span>CONFIRMAÇÃO</span></a>
+                </div>
+
+                <div class="frase-final-secao1"><i class="fa-solid fa-arrow-up"></i>INFORMAÇÕES IMPORTANTES<i class="fa-solid fa-arrow-up"></i></div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2 TÚNEL DO TEMPO -->
+        <section class="section" id="tunel">
+            <h2 class="neon-title" style="font-family:'Orbitron';"><i class="fas fa-repeat"></i> TÚNEL DO TEMPO</h2>
+            <div class="tunnel">
+                <div class="photo-item">
+                    <div class="photo-frame"
+                        onclick="this.classList.add('click-animate');setTimeout(()=>this.classList.remove('click-animate'),400);">
+                        <span class="photo-emoji">👶🍼</span></div><span class="photo-caption-outside">Bebê</span>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-frame"
+                        onclick="this.classList.add('click-animate');setTimeout(()=>this.classList.remove('click-animate'),400);">
+                        <span class="photo-emoji">🧒🎈</span></div><span class="photo-caption-outside">Criança</span>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-frame"
+                        onclick="this.classList.add('click-animate');setTimeout(()=>this.classList.remove('click-animate'),400);">
+                        <span class="photo-emoji">👧🏽🌸</span></div><span class="photo-caption-outside">15 anos</span>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-frame"
+                        onclick="this.classList.add('click-animate');setTimeout(()=>this.classList.remove('click-animate'),400);">
+                        <span class="photo-emoji">👩🏼🎓</span></div><span class="photo-caption-outside">19 anos</span>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-frame"
+                        onclick="this.classList.add('click-animate');setTimeout(()=>this.classList.remove('click-animate'),400);">
+                        <span class="photo-emoji">👰‍♀️💍</span></div><span class="photo-caption-outside">Casada</span>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-frame"
+                        onclick="this.classList.add('click-animate');setTimeout(()=>this.classList.remove('click-animate'),400);">
+                        <span class="photo-emoji">👩‍👧‍👧</span></div><span class="photo-caption-outside">Filhas</span>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-frame"
+                        onclick="this.classList.add('click-animate');setTimeout(()=>this.classList.remove('click-animate'),400);">
+                        <span class="photo-emoji">👨‍👩‍👧‍👦</span></div><span
+                        class="photo-caption-outside">Família</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3 CARDÁPIO -->
+        <section class="section" id="cardapio">
+            <h2 class="neon-title"><i class="fas fa-martini-glass-citrus"></i> CARDÁPIO</i></h2>
+            <div class="retro-card">
+                <div class="cardapio-lista">
+                    <div><img src="img/carnesol.png" height="60px" width="70px" alt=""> Carne de sol com mandioca</div>
+                    <div><img src="img/batata.webp" height="60px" width="70px" alt=""> Batata frita</div>
+                    <div><img src="img/pastel.jpg" height="60px" width="70px" alt=""> Pastel</div>
+                    <div><img src="img/refrigerantes.jpg" height="70px" width="70px" alt=""> Refrigerante</div>
+                    <div><img src="img/agua.webp" height="60px" width="70px" alt=""> Água</div>
+                    <div><img src="img/suco.webp" height="70px" width="70px" alt=""> Suco</div>
+                    <div><img src="img/cervejas.png" height="70px" width="70px" alt=""> Cerveja</div>
+                    <div><img src="img/cervejasbalde.webp" height="60px" width="70px" alt=""> Balde de cerveja</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4 LISTA DE PRESENTES -->
+        <section class="section" id="presentes">
+            <h2 class="neon-title"><i class="fas fa-gift"></i> LISTA DE PRESENTES</i></h2>
+            <div class="retro-card">
+                <div class="presentes-lista">
+                    <ul class="presente-item">
+                        <li><i class="fas fa-hand-holding-heart"></i> Fralda geriátrica (que será doado!)</li>
+                        <li><i class="fas fa-gift"></i> Presente pessoal (à sua escolha)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 6 INFORMAÇÕES (inclui traje) -->
+        <section class="section" id="info">
+            <h2 class="neon-title"><i class="fa-solid fa-info"></i> INFORMAÇÕES</h2>
+            <div class="retro-card">
+                <ul class="info-lista">
+                    <li><i class="fas fa-ban"></i> Não será permitido levar bebidas ou comidas.</li>
+                    <li><i class="fas fa-cart-plus"></i> Haverá venda no local.</li>
+                    <li><i class="fas fa-tshirt"></i> Venha Caracterizado com traje anos 70/80/90 ou semelhante</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 7 CONFIRMAÇÃO (sem botão cardápio) -->
+        <section class="section" id="confirmacao">
+            <div class="retro-card">
+                <div class="secao7-conteudo">
+                    <h2 class="neon-title" style="font-size:clamp(1.8rem,6vw,2.8rem);"><i class="fa-regular fa-circle-check"></i> CONFIRMAÇÃO</h2>
+                    <div class="data-limite">Até</div>
+                    <div class="data-destaque-suave">05/04/2026</div>
+                    <div class="countdown-box">
+                        <div class="countdown-label">Tempo restante</div>
+                        <div class="countdown-timer" id="confirmCountdown">--d --h --m --s</div>
+                    </div>
+                    <div class="btn-group"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdx73LquR8aCyd6y1rDEUI12pgC2fQuz9EYkdoiP3B7BdYzOw/viewform?usp=header" class="neon-btn" target="_blank"><i class="fas fa-check-circle"></i> Confirmar presença</a></div>
+                    <div class="vagas-limitadas"><i class="fas fa-exclamation-triangle"></i> VAGAS LIMITADAS <i
+                            class="fas fa-exclamation-triangle"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- player música -->
+        <div class="music-player"><button class="music-btn" id="playPauseBtn"><i class="fas fa-play"></i></button><span
+                style="color:lime;">🎵 Flashback</span><audio id="bgAudio" loop>
+                <source src="msc/Passinho.mp3" type="audio/mpeg">
+            </audio></div>
+    </div>
+
+    <footer>
+        <div class="footer"><i class="fas fa-sync-alt fa-spin"></i> FLASHBACK • 50 ANOS DA MÁIRA • 2026 <i
+                class="fas fa-sync-alt fa-spin"></i></div>
+    </footer>
+
+    <script>
+        (function () {
+            let counter = 3; const sc = document.getElementById('splashCounter'); if (sc) { const i = setInterval(() => { counter--; sc.textContent = counter; if (counter <= 0) clearInterval(i); }, 1000); }
+            function updateCountdown() { const target = new Date('2026-04-05T23:59:59'), now = new Date(), diff = target - now, el = document.getElementById('confirmCountdown'); if (!el) return; if (diff <= 0) { el.innerHTML = '00d 00h 00m 00s'; return; } const d = Math.floor(diff / 86400000), h = Math.floor((diff % 86400000) / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000); el.innerHTML = `${d.toString().padStart(2, '0')}d ${h.toString().padStart(2, '0')}h ${m.toString().padStart(2, '0')}m ${s.toString().padStart(2, '0')}s`; }
+            updateCountdown(); setInterval(updateCountdown, 1000);
+            const audio = document.getElementById('bgAudio'), btn = document.getElementById('playPauseBtn'); if (audio && btn) { audio.volume = 0.5; btn.addEventListener('click', () => { if (audio.paused) { audio.play().then(() => { btn.innerHTML = '<i class="fas fa-pause"></i>'; }).catch(e => { }); } else { audio.pause(); btn.innerHTML = '<i class="fas fa-play"></i>'; } }); }
+        })();
+    </script>
+</body>
+
+</html>
